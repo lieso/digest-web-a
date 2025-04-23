@@ -20,6 +20,7 @@
   "homepage": "https://github.com/lieso/digest-web-a#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

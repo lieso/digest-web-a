@@ -21,26 +21,24 @@
       }
     }
   },
-  {
-    "related_content": [
-      "newsguidelines.html",
-      "newsfaq.html",
-      "lists",
-      "https://github.com/HackerNews/API",
-      "security.html",
-      "https://www.ycombinator.com/legal/",
-      "https://www.ycombinator.com/apply/",
-      "mailto:hn@ycombinator.com",
-      "Guidelines",
-      "FAQ",
-      "Lists",
-      "API",
-      "Security",
-      "Legal",
-      "Apply to YC",
-      "Contact"
-    ]
-  },
+  "related_content": [
+    "newsguidelines.html",
+    "newsfaq.html",
+    "lists",
+    "https://github.com/HackerNews/API",
+    "security.html",
+    "https://www.ycombinator.com/legal/",
+    "https://www.ycombinator.com/apply/",
+    "mailto:hn@ycombinator.com",
+    "Guidelines",
+    "FAQ",
+    "Lists",
+    "API",
+    "Security",
+    "Legal",
+    "Apply to YC",
+    "Contact"
+  ],
   "entries": [
     {
       "link_title": "Ingrid Daubechies Awarded National Medal of Science",
@@ -540,5 +538,5 @@
     {
       "related_content": "?p=2"
     }
-  ],
+  ]
 }
