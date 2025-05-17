@@ -5,18 +5,37 @@ import { Digest } from '@/components';
 class DigestTypeA extends HTMLElement {
   private root: ReactDOM.Root | null = null;
 
-  connectedCallback() {
-    if (process.env.NODE_ENV === 'development') {
-      this.loadDigest(this.getAttribute('digest') || 'digest-1.json');
+  static get observedAttributes() {
+    return ['digest'];
+  }
 
-      document.getElementById('jsonSelector')?.addEventListener('change', (event) => {
-        const target = event.target as HTMLSelectElement;
-        this.loadDigest(target.value);
-      });
+  connectedCallback() {
+    console.log('connectedCallback');
+    if (!this.root) {
+      this.root = ReactDOM.createRoot(this);
+    }
+    this.updateDigest();
+  }
+
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+    console.log('attributeChangedCallback');
+    this.updateDigest();
+  }
+
+  updateDigest() {
+    console.log('updateDigest');
+
+    const digestAttribute = this.getAttribute('digest');
+    console.log('digestAttribute', digestAttribute);
+
+    if (!digestAttribute) {
+      return;
+    }
+
+    if (process.env.NODE_ENV === 'development') {
+      this.loadDigest(digestAttribute);
     } else {
-      const digest = this.getAttribute('digest') || '{}';
-      const parsedDigest = JSON.parse(digest);
-      this.renderDigest(parsedDigest);
+      this.parseAndRenderDigest(digestAttribute);
     }
   }
 
@@ -29,7 +48,28 @@ class DigestTypeA extends HTMLElement {
       .catch((error) => console.error('Error loading JSON:', error));
   }
 
+  parseAndRenderDigest(digestAttribute: string | null) {
+    console.log('parseAndRenderDigest');
+    let parsedDigest;
+
+    try {
+      parsedDigest = typeof digestAttribute === 'string' ? JSON.parse(digestAttribute) : digestAttribute;
+
+      if (typeof parsedDigest !== 'object') {
+        throw new Error('Parsed digest is not an object');
+      }
+
+      console.info('Successfully parsed digest:', parsedDigest);
+      this.renderDigest(parsedDigest);
+    } catch (error) {
+      console.error('Error parsing digest attribute:', error);
+      this.renderDigest({ error: 'Failed to parse digest data' });
+    }
+  }
+
   renderDigest(data: any) {
+    console.log('renderDigest');
+
     if (!this.root) {
       this.root = ReactDOM.createRoot(this);
     }
@@ -37,6 +77,7 @@ class DigestTypeA extends HTMLElement {
   }
 
   disconnectedCallback() {
+    console.log('disconnectedCallback');
     if (this.root) {
       this.root.unmount();
     }
@@ -44,4 +85,3 @@ class DigestTypeA extends HTMLElement {
 }
 
 customElements.define('digest-type-a', DigestTypeA);
-
