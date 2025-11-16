@@ -11,7 +11,22 @@
       <option value="digest-2.json">Digest 2</option>
     </select>
     <digest-type-a id="digestComponent"></digest-type-a>
+
+    <script>
+      document.getElementById('jsonSelector').addEventListener('change', function(event) {
+        const selectedFile = event.target.value;
+        fetch(selectedFile)
+          .then(response => response.json())
+          .then(data => {
+            const digestComponent = document.getElementById('digestComponent');
+            digestComponent.setAttribute('digest', JSON.stringify(data));
+          })
+          .catch(error => console.error('Error loading JSON:', error));
+      });
+
+      document.getElementById('jsonSelector').dispatchEvent(new Event('change'))
+    </script>
+
     <script src="bundle.js"></script>
   </body>
 </html>
-

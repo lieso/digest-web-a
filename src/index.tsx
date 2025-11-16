@@ -32,11 +32,13 @@ class DigestTypeA extends HTMLElement {
       return;
     }
 
-    if (process.env.NODE_ENV === 'development') {
-      this.loadDigest(digestAttribute);
-    } else {
-      this.parseAndRenderDigest(digestAttribute);
-    }
+    this.parseAndRenderDigest(digestAttribute);
+
+    //if (process.env.NODE_ENV === 'development') {
+    //  this.loadDigest(digestAttribute);
+    //} else {
+    //  this.parseAndRenderDigest(digestAttribute);
+    //}
   }
 
   loadDigest(fileName: string) {
