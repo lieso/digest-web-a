@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Digest } from '@/components';
+import { DigestApp } from '@/components';
 
 class DigestTypeA extends HTMLElement {
   private root: ReactDOM.Root | null = null;
@@ -75,7 +75,7 @@ class DigestTypeA extends HTMLElement {
     if (!this.root) {
       this.root = ReactDOM.createRoot(this);
     }
-    this.root.render(<Digest digest={data} />);
+    this.root.render(<DigestApp digest={data} />);
   }
 
   disconnectedCallback() {

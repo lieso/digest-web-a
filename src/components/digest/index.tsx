@@ -2,6 +2,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+import { Digest, Entries } from '@/types/digest';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -19,31 +21,10 @@ interface DigestProps {
   digest: any;
 }
 
-const findArrayInObject = (obj: any, keyToFind: string): any[] | null => {
-  if (!obj || typeof obj !== 'object') return null;
-
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      if (key === keyToFind && Array.isArray(obj[key])) {
-        return obj[key];
-      } else if (typeof obj[key] === 'object') {
-        const result = findArrayInObject(obj[key], keyToFind);
-        if (result) return result;
-      }
-    }
-  }
-  return null;
-};
-
-export const Digest: React.FC<DigestProps> = ({ digest }: any) => {
+export const DigestApp: React.FC<DigestProps> = ({ digest }: any) => {
   console.log(JSON.stringify(digest, null, 2));
 
-  let entries = findArrayInObject(digest, 'entries');
-
-  if (!entries) {
-    entries = findArrayInObject(digest, 'news_submission');
-  }
-
+  const entries = digest.digest.entries;
   console.log('entries', entries);
 
   if (!entries) {
@@ -67,4 +48,4 @@ export const Digest: React.FC<DigestProps> = ({ digest }: any) => {
   );
 };
 
-export default Digest;
+export default DigestApp;
