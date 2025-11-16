@@ -2,8 +2,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import { Digest, Entries } from '@/types/digest';
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,7 +38,7 @@ export const DigestApp: React.FC<DigestProps> = ({ digest }: any) => {
       {entries.map((entry, index) => (
         <Entry key={index}>
           <Title>
-            {entry.article_title}
+            {entry.title}
           </Title>
         </Entry>
       ))}
