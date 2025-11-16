@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "start": "webpack serve --mode development"
+    "start": "webpack serve --mode development",
+    "generate-types": "./node_modules/.bin/quicktype ./src/schemas/digest.json -o ./src/types/digest.ts"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "babel-loader": "^10.0.0",
+    "quicktype": "^23.2.6",
     "ts-loader": "^9.5.2",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^5.8.3",

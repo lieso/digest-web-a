@@ -1,2 +1,3 @@
 node_modules
 public/digests/
+src/types/digest.ts
