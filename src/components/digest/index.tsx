@@ -37,7 +37,7 @@ export const DigestApp: React.FC<DigestProps> = ({ digest }: any) => {
     <Container>
       {entries.map((entry, index) => (
         <Entry key={index}>
-          <Title>
+          <Title href={entry.url}>
             {entry.title}
           </Title>
         </Entry>
